@@ -41,16 +41,8 @@ namespace BuvarRobot_VD_
         {
             if (double.TryParse(TimeTextBox.Text, out double ido) && double.TryParse(SpeedTextBox.Text, out double sebesseg))
             {
-                string algoritmus = "";
+                string algoritmus = "bruteforce";
                 bool random = false;
-                if (MohoAlgorithmRadioButton.IsChecked == true)
-                {
-                    algoritmus = "moho";
-                }
-                else if (BruteforceAlgorithmRadioButton.IsChecked == true)
-                {
-                    algoritmus = "bruteforce";
-                }
                 if (CbRandom.IsChecked == true)
                 {
                     random = true;
