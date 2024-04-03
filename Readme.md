@@ -22,7 +22,7 @@ Indítsd el a BuvarRobot(VD).exe fájlt amit itt találsz: BuvarRobot(VD)\bin\De
 
 
 ## Az algoritmusról
-Főképp azon az alapon működik, hogy megnéz 2 közeli gyöngyöt, majd eldönti melyikhez éri meg jobban elmennie a robotnak. (A végén lelehet játszani az animációt)
+Az algoritmus megkeresi a két legközelebbi gyöngyöt, és megnézi hogy a pontok különbsége alapjén, hogy megéri-e a távolabbihoz menni.
 
 ## Készítők
 [Dankó Dániel](https://github.com/ddaniel-bit)
