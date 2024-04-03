@@ -336,9 +336,9 @@
             <ComboBox Name="cbMusicChoose" Height="30" Width="250" Margin="247,217,527,329" SelectionChanged="cbMusicChoose_SelectionChanged">
                 <ComboBoxItem Name="Item1">Deepsea style</ComboBoxItem>
                 <ComboBoxItem Name="Item2">Coral corus</ComboBoxItem>
-                <ComboBoxItem Name="Item3">Tárgyalás a nők vezérigazgatójával</ComboBoxItem>
+                <ComboBoxItem Name="Item3">Krúbi - Tárgyalás a nők vezérigazgatójával</ComboBoxItem>
                 <ComboBoxItem Name="Item4">The Farewell</ComboBoxItem>
-                <ComboBoxItem Name="Item5">Cipoe</ComboBoxItem>
+                <ComboBoxItem Name="Item5">MC ISTI - ROAD 66</ComboBoxItem>
             </ComboBox>
 
 
