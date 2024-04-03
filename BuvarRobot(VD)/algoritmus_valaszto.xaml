@@ -342,7 +342,7 @@
                     Width="150" Margin="152,53,148,0" Grid.RowSpan="2">
 
 
-                <Image x:Name="imgkilepes" Source="\Images\futtatas.png"/>
+                <Image x:Name="imgfuttatas" Source="\Images\futtatas.png"/>
             </Button>
 
 
@@ -353,7 +353,8 @@
                     Grid.Row="9"
                     Margin="0px, 70px, 520px 0px"
                     x:Name="btnExit"
-                    
+                     MouseEnter="imgkilepes_MouseEnter"
+                    MouseLeave="imgkilepes_MouseLeave"
                     
                     Grid.RowSpan="2" Click="btnExit_Click">
 

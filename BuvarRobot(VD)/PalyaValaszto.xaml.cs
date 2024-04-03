@@ -51,6 +51,15 @@ namespace BuvarRobot_VD_
             
         }
 
+        private void imgkilepes_MouseEnter(object sender, MouseEventArgs e)
+        {
+            imgigazikilepes.Source = new BitmapImage(new Uri("/Images/kilepeshover.png", UriKind.Relative));
+        }
+        private void imgkilepes_MouseLeave(object sender, MouseEventArgs e)
+        {
+            imgigazikilepes.Source = new BitmapImage(new Uri("/Images/kilepes.png", UriKind.Relative));
+        }
+
         private void level2Button_Click(object sender, RoutedEventArgs e)
         {
             if (leveldata == "2" || leveldata == "3")
