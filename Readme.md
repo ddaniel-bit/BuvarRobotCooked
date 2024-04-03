@@ -12,7 +12,6 @@
 Indítsd el a BuvarRobot(VD).exe fájlt amit itt találsz: BuvarRobot(VD)\bin\Debug\net6.0-windows\BuvarRobot(VD).exe
 ![App Screenshot](https://i.ibb.co/WkMjzVL/k-p-2024-04-03-203448702.png)
 
-Innentől felhasználóbarát a felület.
 
 ## Menüpontok
 -Algoritmusok: itt tudod megadni az értékekeidet és pályádat az algoritmushoz majd azt futtathatod.
