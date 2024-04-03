@@ -1,0 +1,300 @@
+﻿<Window x:Class="BuvarRobot_VD_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BuvarRobot_VD_"
+        mc:Ignorable="d"
+        Height="576" Width="1024" Title="Buvarrobot"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        Icon="icon.ico">
+
+
+
+    <Window.Resources>
+
+        <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border BorderThickness="1"
+                            BorderBrush="Magenta"
+                            Background="Magenta"
+                            Width="8"
+                            CornerRadius="0,0,3,3"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderRepeatButton1" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border SnapsToDevicePixels="True"
+                            Background="Black" 
+                            BorderThickness="1"
+                            BorderBrush="Black"
+                            CornerRadius="3,3,0,0"
+                            Width="8"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderThumb" TargetType="Thumb">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <!--Add name to ellipse to use in  controltemplate triggers-->
+                        <Ellipse x:Name="Ellipse"
+                             Width="16"
+                             Height="16" 
+                             Fill="Magenta"></Ellipse>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Ellipse" Property="Fill" Value="White"></Setter>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="Slider"  TargetType="Slider">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Track Grid.Row="0" x:Name="PART_Track" Orientation="Vertical">
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton}"  Command="Slider.DecreaseLarge" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumb}"  />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton1}" Command="Slider.IncreaseLarge" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="Vertical_Slider" TargetType="Slider">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="MinWidth" Value="21" />
+                    <Setter Property="MinHeight" Value="104" />
+                    <Setter Property="Template" Value="{StaticResource Slider}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+
+
+
+
+
+
+
+    <Border CornerRadius="25" Height="576" VerticalAlignment="Bottom">
+        <Border.Background>
+            <ImageBrush ImageSource="\Images\background.jpeg"/>
+        </Border.Background>
+
+        <Grid>
+
+            <StackPanel HorizontalAlignment="Right">
+                <Button Style="{DynamicResource ButtonStyleHover}"
+                    x:Name="btnTalcaraTesz"
+                    Background="Transparent"
+                    Content="-"
+                    FontSize="50"
+                        
+                    Cursor="Hand"
+                    BorderBrush="Transparent"
+                    Margin="0 -15 15 0"
+                    Height="50" Click="btnTalcaraTesz_Click">
+                    <Button.Effect>
+                        <DropShadowEffect/>
+                    </Button.Effect>
+
+                    <Button.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFFE25C"/>
+                            <GradientStop Color="#FFF305F5" Offset="0.993"/>
+                            <GradientStop Color="#FF00FFE2"/>
+                            <GradientStop Color="#FFF100FF" Offset="0.977"/>
+                        </LinearGradientBrush>
+                    </Button.Foreground>
+
+                </Button>
+            </StackPanel>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <Image Source="\Images\buvarrobot.png"
+                       Height="152" Width="634"
+                       Margin="-9,10,399,414"/>
+
+
+
+
+
+
+
+
+            <Slider Style="{StaticResource Vertical_Slider}"
+                        
+                        Minimum="0"
+                        Maximum="1"
+                        IsSelectionRangeEnabled="True"
+                        SelectionStart="0"
+                        SelectionEnd="100"
+                        Visibility="Hidden"
+                        Orientation="Vertical"
+                        Width="34"
+                        Height="200"
+            
+                       
+                        
+                        x:Name="sldVolume"
+                        Value="0.02"              
+                        ValueChanged="sldVolume_ValueChanged"
+                        MouseLeave="sldVolume_MouseLeave" Margin="973,445,17,-69"
+                         >
+
+            </Slider>
+            <Button x:Name="btnaudio"
+                    Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    
+                    MouseEnter="audio_MouseEnter"
+                    MouseLeave="audio_MouseLeave" 
+                    Click="btnaudio_Click"
+                    Width="50" Height="30" Margin="965,539,19,7">
+
+                <Image x:Name="imgaudio" Source="\Images\audioon.png" />
+            </Button>
+
+
+
+
+
+
+
+
+
+
+            <Button x:Name="btn3" Click="btnAlgorimusok_Click"
+                    Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Margin="28,198,800,337"
+                    MouseEnter="imgalgoritmusok_MouseEnter"
+                    MouseLeave="imgalgoritmusok_MouseLeave">
+
+                <Image x:Name="imgalgoritmusok" Source="\Images\algoritmusok.png" Height="40"/>
+            </Button>
+
+            <Button x:Name="btnStorymod"
+                    Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent" 
+                    Cursor="Hand" Margin="28,256,854,282"
+                    Width="142"
+                    MouseEnter="imgstorymod_MouseEnter"
+                    MouseLeave="imgstorymod_MouseLeave" Click="btnStorymod_Click">
+
+                <Image x:Name="imgstorymod" Source="\Images\storymod.png"/>
+            </Button>
+
+
+            <Button x:Name="beallitasok"
+                    Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Margin="28,308,859,224"
+                    MouseEnter="imgbeallitasok_MouseEnter"
+                    MouseLeave="imgbeallitasok_MouseLeave" Click="beallitasok_Click">
+
+                <Image x:Name="imgbeallitasok" Source="\Images\beallitasok.png"/>
+            </Button>
+
+
+            <Button x:Name="btnkilepes"
+                    Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Click="btnExit_Click"
+                    Cursor="Hand" Margin="28,486,860,30"
+                    Height="60"
+                    MouseEnter="imgkilepes_MouseEnter"
+                    MouseLeave="imgkilepes_MouseLeave">
+
+                <Image x:Name="imgkilepes" Source="\Images\kilepes.png"/>
+
+            </Button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </Grid>
+    </Border>
+
+
+</Window>

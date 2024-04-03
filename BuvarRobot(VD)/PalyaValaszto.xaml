@@ -1,0 +1,82 @@
+﻿<Window x:Class="BuvarRobot_VD_.PalyaValaszto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BuvarRobot_VD_"
+        mc:Ignorable="d"
+        Title="PalyaValaszto" Height="450" Width="450"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
+        Icon="icon.ico">
+    <Border CornerRadius="25">
+        <Border.Background>
+            <ImageBrush ImageSource="\Images\background4.jpeg"/>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="level1Button" Click="level1Button_Click"
+                    Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Grid.Row="0" Height="80"
+                    Width="200"
+                    MouseEnter="imgpalya1_MouseEnter"
+                    MouseLeave="imgpalya1_MouseLeave">
+
+                <Image x:Name="imgpalya1" Source="\Images\palya1.png"/>
+
+            </Button>
+
+            <Button x:Name="level2Button" Click="level2Button_Click"
+                    Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Grid.Row="1" Height="80"
+                    Width="200"
+                    MouseEnter="imgpalya2_MouseEnter"
+                    MouseLeave="imgpalya2_MouseLeave">
+
+                <Image x:Name="imgpalya2" Source="\Images\palya2.png"/>
+
+            </Button>
+
+            <Button x:Name="level3Button" Click="level3Button_Click"
+                    Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Grid.Row="2" Height="80"
+                    Width="200"
+                    MouseEnter="imgpalya3_MouseEnter"
+                    MouseLeave="imgpalya3_MouseLeave">
+
+                <Image x:Name="imgpalya3" Source="\Images\palya3.png"/>
+
+            </Button>
+            <Button Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Grid.Row="2"
+                    Margin="0px, 110px, 380px 0px"
+                    x:Name="btnExit"
+                    
+                    
+                    Grid.RowSpan="2" Click="btnExit_Click">
+
+
+                <Image x:Name="imgigazikilepes" Source="\Images\kilepes.png" Height="30px"/>
+            </Button>
+        </Grid>
+    </Border>
+</Window>

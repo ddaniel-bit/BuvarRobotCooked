@@ -1,0 +1,366 @@
+﻿<Window x:Class="BuvarRobot_VD_.algoritmus_valaszto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BuvarRobot_VD_"
+        mc:Ignorable="d"
+        Title="Robot és Algoritmus Beállítások"
+        Height="600"
+        Width="600"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
+        Icon="icon.ico">
+
+
+
+    <Window.Resources>
+
+        <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border BorderThickness="1"
+                                BorderBrush="Black"
+                                Background="Black"
+                                Height="8"
+                                CornerRadius="0,3,3,0"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderRepeatButton1" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border SnapsToDevicePixels="True"
+                                Background="Magenta" 
+                                BorderThickness="1"
+                                BorderBrush="Magenta"
+                                CornerRadius="3,0,0,3"
+                                Height="8"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderThumb" TargetType="Thumb">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+
+                        <Ellipse x:Name="Ellipse"
+                                 Height="16"
+                                 Width="16" 
+                                 Fill="Magenta"></Ellipse>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Ellipse" Property="Fill" Value="White"></Setter>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="Slider"  TargetType="Slider">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Track Grid.Row="1" x:Name="PART_Track"   >
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton1}"  Command="Slider.DecreaseLarge" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumb}"  />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton}" Command="Slider.IncreaseLarge" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="Horizontal_Slider" TargetType="Slider">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="MinHeight" Value="21" />
+                    <Setter Property="MinWidth" Value="104" />
+                    <Setter Property="Template" Value="{StaticResource Slider}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+
+
+
+
+
+
+
+
+
+        <Style TargetType="TextBox" x:Key="UnderlinedTextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border BorderThickness="0,0,0,1" BorderBrush="Black">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+
+
+
+
+
+    <Border CornerRadius="25">
+        <Border.Background>
+            <ImageBrush ImageSource="\Images\background2.jpeg"/>
+        </Border.Background>
+        <Grid>
+
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="1.2*" />
+                <RowDefinition Height="1.2*" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Image Source="\Images\robotesalg.png"
+                   Height="45"
+                   Grid.Row="0"/>
+
+            <Image Source="\Images\idotartam.png"
+                   Height="35"
+                   Grid.Row="1"
+                   VerticalAlignment="Top" Margin="2,42,-2,0" Grid.RowSpan="2"/>
+
+            <TextBox Style="{StaticResource UnderlinedTextBox}" Grid.Row="1"
+                 Margin="169,0,381,60"
+                 Width="50"
+                 Background="#32122f88"
+                 BorderBrush="Magenta"
+                 Foreground="Magenta"
+                 FontSize="16"
+                     BorderThickness="2"
+                 
+                 x:Name="TimeTextBox"
+                 VerticalAlignment="Bottom" Grid.RowSpan="2" RenderTransformOrigin="0.22,0.715" FontFamily="Comic Sans MS"/>
+            <Image Source="\Images\sebesseg.png"
+                   Height="35"
+                   Grid.Row="2"
+                   VerticalAlignment="Top" Margin="0,26,0,0"/>
+            <TextBox
+                Style="{StaticResource UnderlinedTextBox}" Grid.Row="2"
+                     Margin="156,0,394,9"
+                    Width="50"
+                    Background="#32122f88"
+                    BorderBrush="Magenta"
+                    Foreground="Magenta"
+                    FontSize="16"
+                     x:Name="SpeedTextBox"
+                     VerticalAlignment="Bottom"
+                BorderThickness="2" FontFamily="Comic Sans MS"/>
+            <Label Content="s" VerticalAlignment="Top" Foreground="Magenta" FontFamily="Comic Sans MS" FontSize="16" FontWeight="Bold" Margin="221,41,-221,0" Grid.RowSpan="2" Grid.Row="1"/>
+
+
+
+            <Image Source="\Images\moho.png"
+                   Grid.Row="3" Margin="0,10,0,5"/>
+
+            <RadioButton Grid.Row="3"
+                     Margin="175,0,-80,0"
+                     x:Name="MohoAlgorithmRadioButton" 
+                     VerticalAlignment="Center" 
+                     IsChecked="True"
+                     />
+
+            <Image Source="\Images\zsoltiegyzseni.png"
+                   Height="35"
+                   Grid.Row="4" Margin="2,10,-2,8"/>
+
+            <RadioButton Grid.Row="4"
+                     Margin="105,0,-51,0"
+                     x:Name="BruteforceAlgorithmRadioButton"
+                     VerticalAlignment="Center" Checked="BruteforceAlgorithmRadioButton_Checked"/>
+
+            <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
+                <RadioButton
+                  Name="CbRandom"
+                  Click="CbRandom_Click"  Grid.RowSpan="2"  VerticalAlignment="Center"/>
+                <Image Source="\Images\randomgen.png"
+                   Height="35"
+                   />
+
+                <RadioButton
+                  Name="CbImport"
+                  Grid.RowSpan="2" VerticalAlignment="Center" Click="CbImport_Click" IsChecked="True"/>
+                <Button Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Grid.Row="9"
+		            MouseEnter="imgfajlmegnyitasa_MouseEnter"
+                    MouseLeave="imgfajlmegnyitasa_MouseLeave"
+                    x:Name="btnImport" Click="btnImport_Click"
+                    Width="200" Grid.RowSpan="2"
+                        Padding="0 0 0 0">
+
+
+                    <Image x:Name="imgfajlmegnyitasa"  Source="Images\fajlmegnyitasa.png" Height="37"/>
+                </Button>
+
+                <Label Content="gyongyok.txt" VerticalAlignment="Center" Foreground="Magenta" FontFamily="Comic Sans MS" FontSize="10" FontWeight="Bold" x:Name="lblPath" MaxWidth="150"/>
+            </StackPanel>
+
+
+
+
+            <StackPanel Grid.Row="6"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    x:Name="spRandom"
+                    Height="50">
+                <Image Source="Images/gyongyokszama.png" Height="35"/>
+                
+                <Slider Style="{StaticResource Horizontal_Slider}"
+                        Minimum="5"
+                        Maximum="250"
+                        Width="350"
+                        
+                        VerticalAlignment="Center"
+                        Name="sldGyongyok"
+                        Value="100"
+                        TickFrequency="1"
+                        IsSnapToTickEnabled="True"
+                        ValueChanged="sldGyongyok_ValueChanged" />
+                <Label Content="100" VerticalAlignment="Center" x:Name="lbGyongyok" Foreground="Magenta" FontFamily="Comic Sans MS" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="7"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    x:Name="spRandom2"
+                    Height="50">
+                <Image Source="Images/maximalisx.png" Height="35"/>
+                <Slider Style="{StaticResource Horizontal_Slider}"
+                        Minimum="50"
+                        Maximum="500"
+                        Width="350"
+                        
+                        VerticalAlignment="Center"
+                        Name="sldX"
+                        Value="100"
+                        TickFrequency="1"
+                        IsSnapToTickEnabled="True" ValueChanged="sldX_ValueChanged"/>
+                <Label Content="100" VerticalAlignment="Center" x:Name="lbX" Foreground="Magenta" FontFamily="Comic Sans MS" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="8"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    x:Name="spRandom3"
+                    Height="50">
+                <Image Source="Images/maximalisY.png" Height="35"/>
+                <Slider Style="{StaticResource Horizontal_Slider}"
+                        Minimum="50"
+                        Maximum="500"
+                        Width="350"
+                        
+                        VerticalAlignment="Center"
+                        Name="sldY"
+                        Value="100"
+                        TickFrequency="1"
+                        IsSnapToTickEnabled="True" ValueChanged="sldY_ValueChanged"/>
+                <Label Content="100" VerticalAlignment="Center" x:Name="lbY" Foreground="Magenta" FontFamily="Comic Sans MS" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="9"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    x:Name="spRandom4"
+                    Height="50">
+                <Image Source="Images/maximalisz.png" Height="35"/>
+                <Slider Style="{StaticResource Horizontal_Slider}"
+                        Minimum="50"
+                        Maximum="500"
+                        Width="350"
+                        
+                        VerticalAlignment="Center"
+                        Name="sldZ"
+                        Value="100"
+                        TickFrequency="1"
+                        IsSnapToTickEnabled="True" ValueChanged="sldZ_ValueChanged"/>
+                <Label Content="100" VerticalAlignment="Center" x:Name="lbZ" Foreground="Magenta" FontFamily="Comic Sans MS" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+            <Button Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    MouseEnter="imgfuttatas_MouseEnter"
+                    MouseLeave="imgfuttatas_MouseLeave"
+                    Grid.Row="9"
+                    Click="Button_Click"
+                    Width="150" Margin="152,53,148,0" Grid.RowSpan="2">
+
+
+                <Image x:Name="imgkilepes" Source="\Images\futtatas.png"/>
+            </Button>
+
+
+            <Button Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Grid.Row="9"
+                    Margin="0px, 70px, 520px 0px"
+                    x:Name="btnExit"
+                    
+                    
+                    Grid.RowSpan="2" Click="btnExit_Click">
+
+
+                <Image x:Name="imgigazikilepes" Source="\Images\kilepes.png" Height="30px"/>
+            </Button>
+            <Label Content="m/s" VerticalAlignment="Top" Foreground="Magenta" FontFamily="Comic Sans MS" FontSize="16" FontWeight="Bold" Margin="211,30,-211,0" Grid.Row="2"/>
+        </Grid>
+    </Border>
+</Window>
