@@ -20,7 +20,7 @@ namespace BuvarRobot_VD_
     /// </summary>
     public partial class algoritmus_valaszto : Window
     {
-        string map_path = "../../../gyongyok.txt";
+        string map_path = "../../../3D-G500.txt";
         public algoritmus_valaszto()
         {
             InitializeComponent();
@@ -82,11 +82,11 @@ namespace BuvarRobot_VD_
 
         private void imgfuttatas_MouseEnter(object sender, MouseEventArgs e)
         {
-            imgkilepes.Source = new BitmapImage(new Uri("/Images/futtatashover.png", UriKind.Relative));
+            imgfuttatas.Source = new BitmapImage(new Uri("/Images/futtatashover.png", UriKind.Relative));
         }
         private void imgfuttatas_MouseLeave(object sender, MouseEventArgs e)
         {
-            imgkilepes.Source = new BitmapImage(new Uri("/Images/futtatas.png", UriKind.Relative));
+            imgfuttatas.Source = new BitmapImage(new Uri("/Images/futtatas.png", UriKind.Relative));
         }
 
         private void BruteforceAlgorithmRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -158,6 +158,15 @@ namespace BuvarRobot_VD_
             {
                 lbZ.Content = Convert.ToString(sldZ.Value);
             }
+        }
+
+        private void imgkilepes_MouseEnter(object sender, MouseEventArgs e)
+        {
+            imgigazikilepes.Source = new BitmapImage(new Uri("/Images/kilepeshover.png", UriKind.Relative));
+        }
+        private void imgkilepes_MouseLeave(object sender, MouseEventArgs e)
+        {
+            imgigazikilepes.Source = new BitmapImage(new Uri("/Images/kilepes.png", UriKind.Relative));
         }
 
     }

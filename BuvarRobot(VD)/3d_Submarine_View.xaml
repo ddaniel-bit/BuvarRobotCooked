@@ -42,7 +42,7 @@
                 <HelixToolkit:SunLight/>
             </HelixToolkit:HelixViewport3D>
 
-            <Border Background="#80000000" Height="542" VerticalAlignment="Top" CornerRadius="25,10,10,10" Grid.ColumnSpan="2" Margin="0,0,928,0">
+            <Border Background="#80000000" Height="373" VerticalAlignment="Top" CornerRadius="25,10,10,10" Grid.ColumnSpan="2" Margin="0,0,928,0">
                 <Grid  Height="550px" VerticalAlignment="Top" Visibility="Visible">
 
                     <StackPanel>
@@ -86,14 +86,30 @@
 
 
                     </StackPanel>
+
+                    <Button x:Name="btnanimacio"
+                    Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Click="btnAnimacio_Click"
+                    Cursor="Hand"
+                    MouseEnter="imganimacio_MouseEnter"
+                    MouseLeave="imganimacio_MouseLeave" Margin="126,301,10,197">
+
+                        <Image x:Name="imganimacio" Source="\Images\animacio.png"/>
+
+                    </Button>
+
+
+
                     <Button x:Name="btnkilepes"
                     Style="{StaticResource ButtonStyleHover}"
                     Background="Transparent"
                     BorderBrush="Transparent"
                     Click="btnExit_Click"
-                    Cursor="Hand" Height="34" Width="72"
+                    Cursor="Hand"
                     MouseEnter="imgkilepes_MouseEnter"
-                    MouseLeave="imgkilepes_MouseLeave" Margin="64,516,64,0">
+                    MouseLeave="imgkilepes_MouseLeave" Margin="10,301,158,199">
 
                         <Image x:Name="imgkilepes" Source="\Images\kilepes.png"/>
 

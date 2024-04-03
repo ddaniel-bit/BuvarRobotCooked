@@ -15,6 +15,8 @@
     <None Remove="Images\aktualispozicio.png" />
     <None Remove="Images\algoritmusok.png" />
     <None Remove="Images\algoritmusokhover.png" />
+    <None Remove="Images\animacio.png" />
+    <None Remove="Images\animaciohover.png" />
     <None Remove="Images\audiooff.png" />
     <None Remove="Images\audioon.png" />
     <None Remove="Images\audioon1.png" />
@@ -77,6 +79,12 @@
     <Resource Include="icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\animacio.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\animaciohover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\background4.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -135,7 +143,6 @@
 
   <ItemGroup>
     <PackageReference Include="HelixToolkit.Wpf" Version="2.25.0" />
-    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

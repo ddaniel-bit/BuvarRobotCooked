@@ -70,7 +70,8 @@
                     Grid.Row="2"
                     Margin="0px, 110px, 380px 0px"
                     x:Name="btnExit"
-                    
+                    MouseEnter="imgkilepes_MouseEnter"
+                    MouseLeave="imgkilepes_MouseLeave"
                     
                     Grid.RowSpan="2" Click="btnExit_Click">
 

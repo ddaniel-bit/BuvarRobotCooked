@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using HelixToolkit.Wpf;
@@ -21,6 +22,10 @@ namespace BuvarRobot_VD_
         double ido = 60;
         double sebesseg = 1;
         string algoritmus = "moho";
+
+
+        List<Gyongy> utvonalanim = new List<Gyongy>();
+        ModelVisual3D robotmodel = new ModelVisual3D();
 
         public _3d_Submarine_View(double ido, double sebesseg, string algoritmus, bool random, int gyongyokszama, string map_path, int hatarX, int hatarY, int hatarZ)
         {
@@ -71,7 +76,7 @@ namespace BuvarRobot_VD_
             MegjelenitUtvonal(); // Eredetileg csak egyszer hívtad meg, itt ismét meg kell hívni a frissítéshez
             tbIdo.Text = ido.ToString() + "s";
             tbSebesseg.Text = sebesseg.ToString() + "m/s";
-            tbosszesgyongyok.Text = gyongyokszama.ToString();
+            tbosszesgyongyok.Text = gyongyoklista.Count.ToString();
             tbOsszespontok.Text = gyongyoklista.Sum(x => x.E).ToString();
         }
 
@@ -202,7 +207,31 @@ namespace BuvarRobot_VD_
                 }
             };
 
+
+
+           // TranslateTransform3D translateTransform = new TranslateTransform3D();
+           // modelVisual.Transform = translateTransform;
+            robotmodel = modelVisual; //en irtam
+
+
             ter.Children.Add(modelVisual);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             // Legközelebbi gyöngy keresése
@@ -272,6 +301,71 @@ namespace BuvarRobot_VD_
                 robotPozicio = new Point3D(pont2.Y * szorzo, pont2.X * szorzo, pont2.Z * szorzo);
             }
 
+
+
+
+
+            utvonalanim = utvonal;
+        }
+
+
+
+
+
+
+
+
+
+
+        private async void AnimacioFuttatas(ModelVisual3D robotmodel, int i)
+        {
+
+            if (i < utvonalanim.Count - 1)
+            {
+                // Az aktuális transzformációk meghatározása
+                Transform3DGroup currentTransform = (Transform3DGroup)robotmodel.Transform;
+
+                // Az előző elmozdulások törlése
+                for (int j = currentTransform.Children.Count - 1; j >= 0; j--)
+                {
+                    if (currentTransform.Children[j] is TranslateTransform3D)
+                    {
+                        currentTransform.Children.RemoveAt(j);
+                    }
+                }
+
+                var pont1 = utvonalanim[i];
+                var pont2 = utvonalanim[i + 1];
+
+                // Az elmozdulás transzformáció létrehozása és hozzáadása a transzformációs láncunkhoz
+                TranslateTransform3D translation = new TranslateTransform3D(pont1.Y * szorzo, pont1.X * szorzo, pont1.Z * szorzo);
+                currentTransform.Children.Add(translation);
+                robotmodel.Transform = currentTransform;
+
+                // Animációs tulajdonságok beállítása
+                DoubleAnimation animX = new DoubleAnimation(pont2.Y * szorzo, TimeSpan.FromSeconds(utvonalanim[i].DistanceTo(utvonalanim[i + 1]) / sebesseg));
+                DoubleAnimation animY = new DoubleAnimation(pont2.X * szorzo, TimeSpan.FromSeconds(utvonalanim[i].DistanceTo(utvonalanim[i + 1]) / sebesseg));
+                DoubleAnimation animZ = new DoubleAnimation(pont2.Z * szorzo, TimeSpan.FromSeconds(utvonalanim[i].DistanceTo(utvonalanim[i + 1]) / sebesseg));
+
+                // Animáció elindítása
+                translation.BeginAnimation(TranslateTransform3D.OffsetXProperty, animX);
+                translation.BeginAnimation(TranslateTransform3D.OffsetYProperty, animY);
+                translation.BeginAnimation(TranslateTransform3D.OffsetZProperty, animZ);
+
+                // Várakozás az animáció befejezéséig
+                await Task.Delay((int)((utvonalanim[i].DistanceTo(utvonalanim[i + 1]) / sebesseg) * 1000));
+
+                // Következő lépés indítása
+                AnimacioFuttatas(robotmodel, i + 1);
+            }
+        }
+
+
+
+
+        private void btnAnimacio_Click(object sender, RoutedEventArgs e)
+        {
+            AnimacioFuttatas(robotmodel, 0);
         }
 
         private List<Gyongy> MohoAlgoritmus(List<Gyongy> utvonal, double idolimit, double haladasi_sebesseg)
@@ -456,5 +550,17 @@ namespace BuvarRobot_VD_
         {
             imgkilepes.Source = new BitmapImage(new Uri("/Images/kilepes.png", UriKind.Relative));
         }
+
+
+        private void imganimacio_MouseEnter(object sender, MouseEventArgs e)
+        {
+            imganimacio.Source = new BitmapImage(new Uri("/Images/animaciohover.png", UriKind.Relative));
+        }
+        private void imganimacio_MouseLeave(object sender, MouseEventArgs e)
+        {
+            imganimacio.Source = new BitmapImage(new Uri("/Images/animacio.png", UriKind.Relative));
+        }
+
+
     }
 }
