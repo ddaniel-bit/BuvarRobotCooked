@@ -194,8 +194,6 @@ namespace BuvarRobot_VD_
             // Méretezd kisebbre a modellt (pl.: 0.5-es arányban)
             var scaleTransform = new ScaleTransform3D(0.035, 0.035, 0.035);
 
-            // Elforgatás 90 fokkal az Y tengely mentén
-            var rotateTransform = new RotateTransform3D(new AxisAngleRotation3D(new Vector3D(1, 0, 0), 90));
 
             // Ha a modellt a (0, 0, 0) koordinátára akarod helyezni
             var modelVisual = new ModelVisual3D
@@ -203,7 +201,7 @@ namespace BuvarRobot_VD_
                 Content = model,
                 Transform = new Transform3DGroup()
                 {
-                    Children = new Transform3DCollection() { scaleTransform, rotateTransform }
+                    Children = new Transform3DCollection() { scaleTransform}
                 }
             };
 
@@ -322,32 +320,40 @@ namespace BuvarRobot_VD_
 
             if (i < utvonalanim.Count - 1)
             {
-                // Az aktuális transzformációk meghatározása
-                Transform3DGroup currentTransform = (Transform3DGroup)robotmodel.Transform;
-
-                // Az előző elmozdulások törlése
-                for (int j = currentTransform.Children.Count - 1; j >= 0; j--)
-                {
-                    if (currentTransform.Children[j] is TranslateTransform3D)
-                    {
-                        currentTransform.Children.RemoveAt(j);
-                    }
-                }
+                // Új Transform3DGroup létrehozása minden lépésben
+                Transform3DGroup currentTransform = new Transform3DGroup();
 
                 var pont1 = utvonalanim[i];
                 var pont2 = utvonalanim[i + 1];
 
-                // Az elmozdulás transzformáció létrehozása és hozzáadása a transzformációs láncunkhoz
+                // Méret beállítása
+                ScaleTransform3D scale = new ScaleTransform3D(0.035, 0.035, 0.035);
+                currentTransform.Children.Add(scale);
+
+                Vector3D direction = new Vector3D(pont2.Y * szorzo - pont1.Y * szorzo, pont2.X * szorzo - pont1.X * szorzo, pont2.Z * szorzo - pont1.Z * szorzo);
+                direction.Normalize();
+
+                Vector3D forwardVector = new Vector3D(0, 0, -1);
+                Vector3D axis = Vector3D.CrossProduct(forwardVector, direction);
+                axis.Normalize();
+                double angle = Vector3D.AngleBetween(forwardVector, direction);
+
+                Quaternion rotationQuaternion = new Quaternion(axis, angle);
+                QuaternionRotation3D quaternionRotation = new QuaternionRotation3D(rotationQuaternion);
+                RotateTransform3D rotation = new RotateTransform3D(quaternionRotation);
+                currentTransform.Children.Add(rotation);
+
                 TranslateTransform3D translation = new TranslateTransform3D(pont1.Y * szorzo, pont1.X * szorzo, pont1.Z * szorzo);
                 currentTransform.Children.Add(translation);
+
+                // Az objektum transzformációjának beállítása az új Transform3DGroup-ra
                 robotmodel.Transform = currentTransform;
 
-                // Animációs tulajdonságok beállítása
+                // Animáció elindítása
                 DoubleAnimation animX = new DoubleAnimation(pont2.Y * szorzo, TimeSpan.FromSeconds(utvonalanim[i].DistanceTo(utvonalanim[i + 1]) / sebesseg));
                 DoubleAnimation animY = new DoubleAnimation(pont2.X * szorzo, TimeSpan.FromSeconds(utvonalanim[i].DistanceTo(utvonalanim[i + 1]) / sebesseg));
                 DoubleAnimation animZ = new DoubleAnimation(pont2.Z * szorzo, TimeSpan.FromSeconds(utvonalanim[i].DistanceTo(utvonalanim[i + 1]) / sebesseg));
 
-                // Animáció elindítása
                 translation.BeginAnimation(TranslateTransform3D.OffsetXProperty, animX);
                 translation.BeginAnimation(TranslateTransform3D.OffsetYProperty, animY);
                 translation.BeginAnimation(TranslateTransform3D.OffsetZProperty, animZ);
