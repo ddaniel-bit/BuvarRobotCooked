@@ -143,7 +143,6 @@
 
   <ItemGroup>
     <PackageReference Include="HelixToolkit.Wpf" Version="2.25.0" />
-    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
