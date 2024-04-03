@@ -25,6 +25,7 @@
     <None Remove="Images\background2.jpeg" />
     <None Remove="Images\background3.jpeg" />
     <None Remove="Images\background4.jpeg" />
+    <None Remove="Images\backgroundnemtudomhany.png" />
     <None Remove="Images\beallitasok.png" />
     <None Remove="Images\beallitasokhover.png" />
     <None Remove="Images\begyujtottgyongyok.png" />
@@ -64,6 +65,8 @@
     <None Remove="Images\palya3hover.png" />
     <None Remove="Images\pontok.png" />
     <None Remove="Images\randomgen.png" />
+    <None Remove="Images\rendben.png" />
+    <None Remove="Images\rendbenhover.png" />
     <None Remove="Images\robotesalg.png" />
     <None Remove="Images\robotpozicio.png" />
     <None Remove="Images\sebesseg.png" />
@@ -72,6 +75,7 @@
     <None Remove="Images\storymodhover.png" />
     <None Remove="Images\terngeralattjaro.jpg" />
     <None Remove="Images\tisztelges.jpg" />
+    <None Remove="Images\valassznevet.png" />
     <None Remove="Images\zsoltiegyzseni.png" />
   </ItemGroup>
 
@@ -116,6 +120,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\background3.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\backgroundnemtudomhany.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\beallitasok.png">
@@ -245,6 +252,12 @@
     <Resource Include="Images\randomgen.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\rendben.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\rendbenhover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\robotesalg.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -267,6 +280,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\tisztelges.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\valassznevet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\zsoltiegyzseni.png">

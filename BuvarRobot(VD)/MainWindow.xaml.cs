@@ -198,9 +198,11 @@ namespace BuvarRobot_VD_
                 NevValaszto openWindow1 = new NevValaszto();
                 openWindow1.ShowDialog();
             }
-
-            PalyaValaszto openWindow = new PalyaValaszto();
-            openWindow.Show();
+            else
+            {
+                PalyaValaszto openWindow = new PalyaValaszto();
+                openWindow.Show();
+            }
             this.Close();
         }
 

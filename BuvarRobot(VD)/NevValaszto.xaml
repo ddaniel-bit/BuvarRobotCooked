@@ -5,16 +5,182 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BuvarRobot_VD_"
         mc:Ignorable="d"
-        Title="NevValaszto" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        Title="PalyaValaszto" Height="450" Width="450"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
+        Icon="icon.ico">
+    <Window.Resources>
 
-        <Label Content="Adja meg a nevét:" Margin="10"/>
-        <TextBox x:Name="txtNev" Grid.Row="0" Margin="120,10,10,10"/>
+        <Style x:Key="SliderRepeatButton" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="IsTabStop" Value="false" />
+            <Setter Property="Focusable" Value="false" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border BorderThickness="1"
+                                BorderBrush="Black"
+                                Background="Black"
+                                Height="8"
+                                CornerRadius="0,3,3,0"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
-        <Button Content="OK" Grid.Row="1" Margin="10" Click="Button_Click"/>
-    </Grid>
+        <Style x:Key="SliderRepeatButton1" TargetType="RepeatButton">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RepeatButton">
+                        <Border SnapsToDevicePixels="True"
+                                Background="Magenta" 
+                                BorderThickness="1"
+                                BorderBrush="Magenta"
+                                CornerRadius="3,0,0,3"
+                                Height="8"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SliderThumb" TargetType="Thumb">
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+
+                        <Ellipse x:Name="Ellipse"
+                                 Height="16"
+                                 Width="16" 
+                                 Fill="Magenta"></Ellipse>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Ellipse" Property="Fill" Value="White"></Setter>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="Slider"  TargetType="Slider">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Track Grid.Row="1" x:Name="PART_Track"   >
+                    <Track.DecreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton1}"  Command="Slider.DecreaseLarge" />
+                    </Track.DecreaseRepeatButton>
+                    <Track.Thumb>
+                        <Thumb Style="{StaticResource SliderThumb}"  />
+                    </Track.Thumb>
+                    <Track.IncreaseRepeatButton>
+                        <RepeatButton Style="{StaticResource SliderRepeatButton}" Command="Slider.IncreaseLarge" />
+                    </Track.IncreaseRepeatButton>
+                </Track>
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="Horizontal_Slider" TargetType="Slider">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="SnapsToDevicePixels" Value="true" />
+            <Setter Property="OverridesDefaultStyle" Value="true" />
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="MinHeight" Value="21" />
+                    <Setter Property="MinWidth" Value="104" />
+                    <Setter Property="Template" Value="{StaticResource Slider}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+
+
+
+
+
+
+
+
+
+        <Style TargetType="TextBox" x:Key="UnderlinedTextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border BorderThickness="0,0,0,1" BorderBrush="Black">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="25">
+        <Border.Background>
+            <ImageBrush ImageSource="\Images\backgroundnemtudomhany.png"/>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image Source="/Images/valassznevet.png" Height="80px" Grid.Row="1"/>
+            <TextBox
+                Width="200"
+                Style="{StaticResource UnderlinedTextBox}" Grid.Row="2"
+                     Margin="106,0,106,0"
+                    Background="#32122f88"
+                    BorderBrush="Magenta"
+                    Foreground="Magenta"
+                    FontSize="25"
+                     VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                BorderThickness="2" FontFamily="Comic Sans MS" Height="36"
+                x:Name="txtNev"/>
+            <Button Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Grid.Row="3"
+                    x:Name="btnRendben"
+                    Margin="0 0 0 120"
+                    Width="150" Height="50px"  Grid.RowSpan="2" MouseEnter="btnRendben_MouseEnter" MouseLeave="btnRendben_MouseLeave" Click="btnRendben_Click">
+
+
+                <Image x:Name="imgrendben" Source="\Images\rendben.png"/>
+            </Button>
+            <Button Style="{StaticResource ButtonStyleHover}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    Cursor="Hand"
+                    Grid.Row="4"
+                    Margin="0 50 380 0"
+                    x:Name="btnExit"
+                     MouseEnter="imgkilepes_MouseEnter"
+                    MouseLeave="imgkilepes_MouseLeave"
+                    
+                    Click="btnExit_Click">
+
+
+                <Image x:Name="imgigazikilepes" Source="\Images\kilepes.png" Height="30px" RenderTransformOrigin="-1.93,1.276"/>
+            </Button>
+        </Grid>
+    </Border>
 </Window>
